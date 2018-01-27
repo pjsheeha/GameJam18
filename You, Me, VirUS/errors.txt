@@ -2,12 +2,12 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 68: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
-    "swipe right"
-                 ^
+File "game/script.rpy", line 242: expected ':' not found.
+    label morning_street
+                        ^
 
-File "game/script.rpy", line 114: menu statement expects a non-empty block.
-    menu:
-        ^
+File "game/script.rpy", line 256: expected ':' not found.
+    label Coffee_shop
+                     ^
 
 Ren'Py Version: Ren'Py 6.99.14.3135
