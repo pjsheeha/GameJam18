@@ -15,10 +15,12 @@ label splashscreen:
     # scene bg splash
     # with fade
 
-label before_main_menu:
-    ""
+# label before_main_menu:
+#     ""
 
 label start:
+
+    show warren neutral at left
 
     # scene bg instagram popular
     # with fade
@@ -28,12 +30,7 @@ label start:
 
     i "I can't believe that the Common Cold has overtaken me on Instagram. They probably bought half of their infection vectors."
     i "They'd infect anybody...such low standards!"
-    i "I mean, they aren't even seasonal! I'm the flu."
-    pause 0.5
-    i "THE"
-    pause 0.5
-    i "FLU"
-    pause 0.5
+    i "I mean, they aren't even seasonal! I'm the flu!"
     i "I can't let this happen, I need to do something!"
 
     menu What_to_do:
@@ -65,10 +62,10 @@ label do_something:
     i "I'll infect a socialite! Someone who gets in contact with a lot of people who can do my dirty work. It's perfect! I can make history and not even have to change my IG posting schedule."
     
     menu infecter_date:
-        "swipe right"
+        "swipe right":
             scene bg infecter match
             i "They're perfect! And Nearby! I'll set up a date with them for this weekend and from there it'll be history!"
-        "rethink plan"
+        "rethink plan":
             show flu sad
             i "now that I think on it...maybe this is a dumb plan"
             ".:. you have infected 0 people this Flu season and failed as a virus. You lose all your followers and delete your Instagerm account."
@@ -82,10 +79,39 @@ label Warren_date:
     "His extravagant and wild party lifestyle has done a number on his immune system, making him easy to infect. But can you get close enough? Party planners cant afford to get sick, you know!"
 
     scene bg restaurant
-    show flu neutral at left
-    show Warren neutral at right
+    # show flu neutral at left
+    show warren neutral at right
     with fade 
 
-    w ""
+    w "I hope this isn't too much for you. I thought it'd be best to chose a more toned down locale for our initial meet."
+    w "It may still be more than you're used to, though."
+
+    menu:
+        "Be rude back":
+            show flu surprised at left
+            i "I'm surprised you chose such a pedestrian type place."
+            show warren surprised at right
+            w "pedestrian?!"
+        "Be polite":
+            show flu neutral at left
+            i "It's fine..."
+        "Be excited":
+            show flu happy at left
+            i "The restaurant is lovely! I think its just right for us. No prying eyes."
+        
+    show warren 
+    w "Whatever. Just let me know if you need any help understanding anything on the menu."
+
+    i "How sweet"
+
+    w "Yeah. Anyway, I've been planning a party for this upcoming weekend. It's going to be the biggest party of the century and people will be flying from all over just to try to be near it. I could get you in guarenteed."
+    w "want to come?"
+
+    menu:
+        "Accept invitation rudely":
+            i "I GUESS I can be free if I need to be"
+        "Accept invitation happily":
+            i "I'd love to!"
+
 
     return

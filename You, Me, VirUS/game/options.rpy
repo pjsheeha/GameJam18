@@ -158,6 +158,9 @@ define config.window_icon = "gui/window_icon.png"
 
 init python:
 
+    config.screen_width = 1600
+    config.screen_height = 900
+
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
     ## with and without a leading /. If multiple patterns match, the first is
