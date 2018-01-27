@@ -1,14 +1,14 @@
-Sat Jan 27 16:58:43 2018
+Sat Jan 27 17:45:24 2018
 Darwin-17.2.0-x86_64-i386-64bit
 Ren'Py 6.99.14.3135
  
 
-Bootstrap to the start of init.init took 0.07s
+Bootstrap to the start of init.init took 0.08s
 Early init took 0.00s
 Loader init took 0.01s
 Loading error handling took 0.02s
-Loading script took 0.15s
-Loading save slot metadata. took 0.00s
+Loading script took 0.16s
+Loading save slot metadata. took 0.01s
 Loading persistent took 0.00s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Running init code took 0.04s
@@ -19,15 +19,15 @@ Backing up script files to '/Users/juliannfields/Library/RenPy/backups/You, Me, 
 Dump and make backups. took 0.04s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc. took 0.01s
+Initial gc. took 0.02s
 DPI scale factor: 1.000000
-Creating interface object took 0.11s
+Creating interface object took 0.14s
 Cleaning stores took 0.00s
 Init translation took 0.02s
-Build styles took 0.00s
+Build styles took 0.01s
 Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.06s
+Analyze screens took 0.02s
+Save screen analysis took 0.07s
 Prepare screens took 0.06s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.05s
@@ -185,11 +185,18 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 1.00929093361s
+Total time until interface ready: 1.04235005379s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.017273 seconds.
-- Frame drawn at 0.028220 seconds.
-- Frame drawn at 0.044816 seconds.
-- Frame drawn at 0.083563 seconds.
-- 0.083563 seconds to render 5 frames.
+- Frame drawn at 0.018017 seconds.
+- Frame drawn at 0.030957 seconds.
+- Frame drawn at 0.044943 seconds.
+- Frame drawn at 0.083259 seconds.
+- 0.083259 seconds to render 5 frames.
+Cleaning stores took 0.00s
+Init translation took 0.13s
+Build styles took 0.01s
+Load screen analysis took 0.02s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s

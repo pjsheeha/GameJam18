@@ -118,7 +118,7 @@ label Warren_date:
             i "I'd love to!"
 
     hide flu
-    show warren shocked
+    show warren shocked at right
     show honey happy
 
     h "Oh. My. Bio!"
@@ -162,6 +162,15 @@ label Warren_date:
     label honey_neutral_1:
         show honey happy at right
         h "You've got to go check out this museum with me! It's huge right now and my family is donating a bunch of art so we could have to whole place to hang out!"
+        menu:
+            "Sure!":
+                show flu happy at left
+                i "Yeah! That would be great! Im bored anyway."
+                i "Bye Warren! Let's go!"
+                jump date_end
+            "Too busy":
+                show honey sad at right
+                i "No, I'm busy today."
 
     label honey_rude_1:
         show honey sad at right
@@ -189,7 +198,8 @@ label Warren_date:
                 jump honey_leaves
 
     label honey_leaves:
-        show warren neutral right
+        hide honey
+        show warren neutral at right
         show flu neutral left
 
         w "wow I didn't realize you were so popular. You must be pretty famous! I didn't expect that."
@@ -215,7 +225,7 @@ label Warren_date:
             "no":
                 i "no"
 
-        show warren happy right
+        show warren happy at right
         w "alright. Later!"
         jump date_end
     
@@ -256,12 +266,9 @@ label morning_street:
     i "I cant seem to properly wake up, though. How will I ever Infect the whole West Coast if I can't even stay awake!?"
     show flu happy
     i "Oh! I'll head to Mitochondria! My favorite coffee shop always has something to power my cell."
-    jump Coffee_shop
 
 label Coffee_shop:
-    scene bg CoffeeShop
-    with fade
-
+    scene bg cafe
     show flu angry
     with fade
 
