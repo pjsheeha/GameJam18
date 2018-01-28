@@ -6,10 +6,14 @@
 define i = Character("InFLUencer", color="#7e7935")
 define w = Character("Warren", color="#7a3396")
 define a = Character("Alexei", color="#5693ce")
-define h = Character("Honey Bear", color="#b85826")
+define h = Character("Prince(ess) Honey Bear", color="#b85826")
 define b = Character("Random Barista", color="#fffdc1")
 
 default honey_end = True
+default warren_end = True
+default alexei_end = True
+
+$ end_count = 0
 
 # The game starts here.
 
@@ -25,12 +29,15 @@ label start:
     scene bg instagram popular
     with fade
 
-    show flu angry at left
+    show virus angry at left
     with dissolve
 
-    i "I can't believe that the Common Cold has overtaken me on Instagram. They probably bought half of their infection vectors."
+    i "I can't believe that the Common Cold has overtaken me on Instagerm. They probably bought half of their infection vectors."
     i "They'd infect anybody...such low standards!"
-    i "I mean, they aren't even seasonal! I'm the flu!"
+
+    scene bg instagram flu
+    show virus angry at left
+    i "I mean, they aren't even seasonal like I am! I'm the flu! This is MY season"
     i "I can't let this happen, I need to do something!"
 
     menu What_to_do:
@@ -38,17 +45,14 @@ label start:
             jump do_something
 
         "Do nothing about it":
-            show flu sad at left
+            show virus neutral at left
             with dissolve
-            i "yeah...I dont know what I would even do, though. Who really cares about instagram anyway?"
+            i "yeah...I dont know what I would even do, though. Who really cares about instagerm anyway?"
             ".:. you have infected 0 people this Flu season and failed as a virus. You lose all your followers and delete your Instagerm account."
             return
         
 label do_something:
-    show flu angry at left
-    with dissolve
-
-    show flu happy at left
+    show virus happy at left
     with dissolve
 
     i "I know! The flu season is almost over, but there's still time."
@@ -66,7 +70,7 @@ label do_something:
             i "They're perfect! And Nearby! I'll set up a date with them for this weekend and from there it'll be history!"
 
         "rethink plan":
-            show flu sad
+            show virus sad
             i "now that I think on it...maybe this is a dumb plan"
             ".:. you have infected 0 people this Flu season and failed as a virus. You lose all your followers and delete your Instagerm account."
             return
@@ -80,7 +84,7 @@ label Warren_date:
     "His extravagant and wild party lifestyle has done a number on his immune system, making him easy to infect. But can you get close enough? Party planners cant afford to get sick, you know!"
 
     scene bg restaurant
-    show flu neutral at left
+    show virus neutral at left
     show warren neutral at right
     with fade 
 
@@ -89,15 +93,15 @@ label Warren_date:
 
     menu:
         "Be rude back":
-            show flu surprised at left
+            show virus surprised at left
             i "I'm surprised you chose such a pedestrian type place."
             show warren surprised at right
             w "pedestrian?!"
         "Be polite":
-            show flu neutral at left
+            show virus neutral at left
             i "It's fine..."
         "Be excited":
-            show flu happy at left
+            show virus happy at left
             i "The restaurant is lovely! I think its just right for us. No prying eyes."
         
     show warren neutral
@@ -114,27 +118,27 @@ label Warren_date:
             show warren surprised
 
         "Accept invitation happily":
-            show flu happy at left
+            show virus happy at left
             i "I'd love to!"
 
-    hide flu
+    hide virus
     show warren shocked at right
     show honey happy
 
     h "Oh. My. Bio!"
-    h "Is that InFLUencer?! Is it really YOU?!"
+    h "Is that InFLUencer?! From Instagerm?! Is it really YOU?!"
 
     show warren angry
 
     menu:
         "ew another fan?":
             hide warren 
-            show flu angry at left
+            show virus angry at left
             show honey surprised at right
             i "What's it to ya?"
         "omg! a fan?!":
             hide warren 
-            show flu happy at left
+            show virus happy at left
             show honey happy at right
             "Yeah, are you a fan? It's always nice to meet new people!"
     
@@ -143,18 +147,18 @@ label Warren_date:
 
     menu:
         "neutral":
-            show flu happy at left
+            show virus happy at left
             i "I'm glad to be meeting you."
             jump honey_neutral_1
 
         "rude":
-            show flu angry at left
+            show virus angry at left
             show honey surprised at right
             i "Okay. Did you need something?"
             jump honey_rude_1
 
         "polite":
-            show flu neutral at left
+            show virus neutral at left
             show honey neutral at right
             i "Thank you! I'm on a date right now, though, and want to focus on that."
             jump honey_polite_1
@@ -164,9 +168,7 @@ label Warren_date:
         h "You've got to go check out this museum with me! It's huge right now and my family is donating a bunch of art so we could have to whole place to hang out!"
         menu:
             "Sure!":
-                show flu happy at left
                 i "Yeah! That would be great! Im bored anyway."
-                i "Bye Warren! Let's go!"
                 jump date_end
             "Too busy":
                 show honey sad at right
@@ -187,9 +189,10 @@ label Warren_date:
         h "Could we possibly talk after your date?"
         menu:
             "Sure!":
-                show flu happy at left
+                show virus happy at left
                 i "Yeah! That would be great! I'll talk to you then."
-                jump date_end
+                $ date_finished = True
+                jump honey_leaves
             "Too busy":
                 i "No, I'm busy today."
                 show honey sad at right
@@ -200,20 +203,20 @@ label Warren_date:
     label honey_leaves:
         hide honey
         show warren neutral at right
-        show flu neutral left
+        show virus neutral left
 
         w "wow I didn't realize you were so popular. You must be pretty famous! I didn't expect that."
 
         menu:
             "Yeah, you know, just a day in the life!":
-                show flu blush
+                show virus blushing
                 i "Yeah, you know, just a day in the life!"
             "I try not to BRAG about it, you know.":
-                show flu blush
+                show virus blushing
                 i "I try not to BRAG about it, you know. But I'm up there with the Common Cold and Strep Throat!"
             "It's no big deal.":
                 i "It's no big deal."            
-                show flu blush
+                show virus blushing
 
         w "Listen, I've had a great time. Let's hang out again. I'm pretty busy right now but we can spend some time together at my party. I'll see you there right?"
 
@@ -233,18 +236,18 @@ label Warren_date:
         if honey_end:
             hide warren
             hide honey
-            show flu happy at left
-            i "Bye Warren!"
+            show virus happy at left
+            i "Bye Warren! Let's go, Honey!"
 
-            hide flu
-            show honey happy
-            h "Hey again Influ! Is it alright if I call you Influ?"
-            h "Anyway, what do you say to going to this museum with me? It'll be a great time!"
-
-            i "sure...why not!"
+            if date_finished:
+                hide virus
+                show honey happy
+                h "So, Influ! Is it alright if I call you Influ?"
+                h "Anyway, what do you say to going to this museum with me? It'll be a great time!"
+                i "sure...why not!"
 
             hide honey
-            hide flu 
+            hide virus 
             scene bg black
 
             "On your inpromptu date, you find out some interesting things. Honey is a prince(ess)! 5th in line for the throne in Tonga! If you infect them you're going international"
@@ -258,40 +261,40 @@ label morning_street:
     scene bg street
     with fade
 
-    show flu neutral
+    show virus neutral
     with fade
 
     i "What a great morning. I don't have much at all planned for my day but should try to stay out so I don't waste this good weather. Who knows, maybe I'll the next greatest disease vector today!"
-    show flu angry
+    show virus angry
     i "I cant seem to properly wake up, though. How will I ever Infect the whole West Coast if I can't even stay awake!?"
-    show flu happy
+    show virus happy
     i "Oh! I'll head to Mitochondria! My favorite coffee shop always has something to power my cell."
 
 label Coffee_shop:
     scene bg cafe
-    show flu angry
+    show virus angry
     with fade
 
     i "I forgot how long it takes them to make my favorite drink sometimes. This sucks"
     b "One Grande, Iced, Sugar-Free, Vanilla Latte with Soy Milk and nutmeg at 120 Degrees!"
-    show flu happy
+    show virus happy
     i "Finally! Now I can sit and enjoy my morning properly!"
-    show flu angry
+    show virus angry
     i "Or at least I could if this gracile grassroots guy would stop whatever hes doing. People are paying him too much attention!"
 
-    hide flu
+    hide virus
     show alexei happy
     a "Everyone understands the extraordinary hardships that are placed on the uninsured, who live every day just one accident or illness away from bankruptcy. These are not primarily people on welfare. Some can’t get insurance on the jobs they have! I have a plan for us, that WILL work! It's simple, really..."
 
     hide alexei 
-    show flu angry
+    show virus angry
     i "Oh. My. Bio. He's actually on to something! This isn't good. If he goes on like this I might die."
-    show flu surprised
+    show virus surprised
     i "If he actually does this all of virus kind might die! I'll be finished!"
-    show flu angry
+    show virus angry
     i "I need to step in!"
 
-    hide flu
+    hide virus
     show alexei happy at right
     a "...This is especially true now in Flu season! Vaccines are essential! That’s why under my plan..."
     menu:
@@ -299,5 +302,198 @@ label Coffee_shop:
             "Oy! Cut it out! Don't talk that vaccine stuff out here! Are you trying to ruin everyone's lives?! Everyone knows the best way to fight off any sort of sickness is to turn your a/c on high and binge eat Coldrock ice-cream!"
         "Take him aside kindly":
             "Hey! I couldn't help but overhear you. Would you mind sitting with me for a bit? Just to chat. You seem so friendly and sociable! So handsome! I bet you have a GREAT immune system too."
+    a "I'm always glad to meet one of my constituents. What can I do for you?"
+    menu:
+        "How do you react?"
+        "Tell him to chill out":
+            i "First of all, you can chill out. You're way too uptight. Come to this party with me this weekend. It going to be the biggest of the century!"
+            a "I couldn't possibly go! There's so much work to be done!"
+            i "Forget work, you're going. Thats final."
+        "Tell him to take a break":
+            "You seem like a first class workaholic. When's the last time you took a break?"
+            show alexei worried at right
+            a "Now that you mention it...i'm not sure."
+            a "Maybe it's been too long"
+            i "It definitely has. Youre going with me to this party this weekend and im going to teach you about taking some \"me time\""
+            a "I dont know..."
+            i "Of course you don't. Learn to take a risk or two! You're coming!"
+            show alexei happy at right
+            a "I guess I can't afford to disappoint my constituents. I'll go."
+
+scene bg black
+
+
+label party:
+    scene bg party
+    show virus neutral
+    with fade
+
+    label the_choice:
+        show virus neutral
+        menu ThePerfectVector1:
+            "You are at the party now and need to decide who to go to. Who will you transmit your strain to? Who's the perfect vector for you?!"
+            "Warren, the pretty-boy party planner" if warren_end:
+                python:
+                    if end_count == 1:
+                        end_count+=1
+                jump party_planner
+            "Alexei, the white-hot witty workaholic":
+                python:
+                    if end_count == 2:
+                        end_count+=1
+                jump white_hot_workaholic
+            "Honey Bear, the real party royalty" if honey_end:
+                $ end_count = 1
+                jump party_royalty
+            "Leave party" if !honey_end and !warren_end and !alexei_end:
+                jump bad_ending
     
+    label party_royalty:
+        show honey drunk sad at right
+        show virus neutral at left
+
+        h "Oh. My. Bio! InFLU I don't know what to do. My family is horrid.
+        They've cut me off! I have nothing now!"
+
+        menu:
+            "That's not true! You have me!":
+                show honey drunk happy at right
+                h "Nononononoono wait wait wait. I lied. I have you, InFLU! You're so nice to me and kind. You're so REAL. Like really, real!"
+            "I'm so sorry! Is there anything I can do to help?":
+                show honey drunk happy at right
+                h "Nononononoono wait wait wait. I lied. I have you, InFLU! You're so nice to me and kind. You're so REAL. Like really, real!"
+        menu:
+            "stay and infect him":
+                i "Awww you're so sweet. Drunk, but sweet."
+                jump honey_kiss
+            "leave and save him":
+                i "Yeah no. I can't do this to this poor guy."
+                $ honey_end = False
+                jump the_choice
+
+    label party_planner:
+        show warren happy at right
+        show virus happy at left
+
+        w "Hey you made it! So, what do you think big-shot?"
+        menu:
+            "I mean, its ALRIGHT, I guess...":
+                w "It's great, I know!"
+            "I love it!":
+                w "It's great, I know!"
+            "It sucks (leave)":
+                $ warren_end = False
+                jump the_choice
+        menu:
+            "stay and infect him":
+                i "I need to talk to you about something"
+                w "Yeah, sure. What's up?"
+                i "I feel like I can be so close to you and real with you. You're so fun."
+                w "I feel the same. Being around you is like the best party."
+                i "I have a party favor for you..."
+                w "I love those. What is it?"
+                i "This!"
+                jump warren_kiss
+            "leave and save him":
+                i "You know what? Nevermind, I can't do this"
+                $ warren_end = False
+                jump the_choice
+
+    label white_hot_workaholic:
+        show alexei drunk happy at right
+        show virus happy at left
+
+        a "Heyyy! I've been looking everywhere for yoouuuu!"
+        show virus neutral at left
+        w "Wait...Alexey..."
+        show virus surprised at left
+        w "Are you drunk?!"
+        show virus neutral at left
+        a "I just had a few drinks, ya know? There was a bunch of people who just kept giving them and it was so much fun and they really like my policies! This crowd is sooooo in touch!"
+        show alexei drunk shy
+        a "You, know..."
+        a "I never saw myself being able to do stuff like this. I don't think I could ever really have fun like this with anyone else."
+        show alexei drunk happy
+        a "You've really changed me and opened me up to trying new things. I was open minded before but not open enough to live a little wild like this."
+
+        menu:
+            "ruin the mood":
+                show virus angry at left
+                i "What is this? A soliloquy?"
+                show alexei drunk sad
+                a "Oh... I guess ill just stop then"
+                $ alexei_end = False
+                jump the_choice
+
+            "be happy about it":
+                show virus happy at left
+                i "I'm so glad you're being so honest with me. So open."
+                show virus blushing at left
+                show alexei drunk shy at right
+                a "There's something special here between us. When I first got
+                    into politics, it was because there was no one helping people
+                    like me or the people around me. I wanted to help. The more I
+                    worked the more I was able to help and the more I wanted to do.
+                    I couldn't and can't afford breaks. I work hard to not get
+                    sick so I can be there for the people at every moment. I've
+                    spent all my time working to help people and improve lives. I never
+                    thought I'd meet someone like you...who would improve my life."
+                
+                menu:
+                    "infect him":
+                        jump alexei_kiss
+                    "save him":
+                        jump sad_ending
+
+    label honey_kiss:
+        h "I don't know what I'd do without you InFlu. Come here!"
+        hide honey
+        hide flu
+        show honey_flu_kiss
+        with fade
+        if warren_end:
+            jump warren_end
+        elif alexei_end:
+            jump alexei_end
+
+    label warren_kiss:
+        hide warren
+        hide flu
+        show warren_flu_kiss
+        with fade
+        jump alexei_end
+
+    label alexei_kiss:
+        hide alexei
+        hide flu
+        show alexei_flu_kiss
+        with fade
+        if end_count == 3:
+            jump best_end
+        else:
+            jump ok_ending
+
+    label ok_ending:
+        if alexei_end and warren_end and honey_end:
+            jump best_end
+        else:
+            jump ok_ending
+    
+    label best_end:
+        scene bg black
+
+    label sad_ending:
+        scene bg car
+        show virus sad
+        "words"
+        "The End"
+        return
+
+    label bad_ending:
+        scene bg black
+        "{b}Worst ending Possible{/b}
+        You infected 0 people this Flu Season and are forgotten as a virus
+        You loose all your Instagerm followers and delete your account."
+        "The End"
+        return
 return
