@@ -3,8 +3,8 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define i = Character("InFLUencer", color="#7e7935")
-define w = Character("Warren", color="#7a3396")
+define i = Character("InFLUencer", color="#a575b2")
+define w = Character("Warren", color="#d35d45")
 define a = Character("Alexei", color="#5693ce")
 define h = Character("Prince(ess) Honey Bear", color="#b85826")
 define b = Character("Random Barista", color="#fffdc1")
@@ -13,7 +13,9 @@ default honey_end = True
 default warren_end = True
 default alexei_end = True
 
-$ end_count = 0
+default date_finished = False
+
+define end_count = 0
 
 # The game starts here.
 
@@ -48,7 +50,8 @@ label start:
             show virus neutral at left
             with dissolve
             i "yeah...I dont know what I would even do, though. Who really cares about instagerm anyway?"
-            ".:. you have infected 0 people this Flu season and failed as a virus. You lose all your followers and delete your Instagerm account."
+            scene bg worst end
+            pause
             return
         
 label do_something:
@@ -72,16 +75,14 @@ label do_something:
         "rethink plan":
             show virus sad
             i "now that I think on it...maybe this is a dumb plan"
-            ".:. you have infected 0 people this Flu season and failed as a virus. You lose all your followers and delete your Instagerm account."
+            scene bg worst end
+            pause
             return
-            
-    jump Warren_date
-return
 
 label Warren_date:
     "You match with your city's resident wild party-planner, a typical super-posh, wealthy, play-boy with ties to all the elite in the area."
     "Infecting him means your strain will find its way to all the well-traveled high class in the area. From there you can hope it trickles down the social ladder."
-    "His extravagant and wild party lifestyle has done a number on his immune system, making him easy to infect. But can you get close enough? Party planners cant afford to get sick, you know!"
+    "His party lifestyle has done a number on his immune system, making him easy to infect. But can you get close enough? Party planners cant afford to get sick, you know!"
 
     scene bg restaurant
     show virus neutral at left
@@ -95,6 +96,7 @@ label Warren_date:
         "Be rude back":
             show virus surprised at left
             i "I'm surprised you chose such a pedestrian type place."
+            show virus neutral
             show warren surprised at right
             w "pedestrian?!"
         "Be polite":
@@ -105,17 +107,20 @@ label Warren_date:
             i "The restaurant is lovely! I think its just right for us. No prying eyes."
         
     show warren neutral
+    show virus neutral
     w "Whatever. Just let me know if you need any help understanding anything on the menu."
 
     i "How sweet"
 
+    show virus happy at left
     w "Yeah. Anyway, I've been planning a party for this upcoming weekend. It's going to be the biggest party of the century and people will be flying from all over just to try to be near it. I could get you in guarenteed."
     w "want to come?"
 
     menu:
         "Accept invitation rudely":
+            show virus angry at left
+            show warren surprised at right
             i "I GUESS I can be free if I need to be"
-            show warren surprised
 
         "Accept invitation happily":
             show virus happy at left
@@ -250,7 +255,7 @@ label Warren_date:
             hide virus 
             scene bg black
 
-            "On your inpromptu date, you find out some interesting things. Honey is a prince(ess)! 5th in line for the throne in Tonga! If you infect them you're going international"
+            "On your inpromptu date, you find out some interesting things. Honey is a prince(ess)! To be specific, they are 5th in line for the throne in Tonga! If you infect them you're going international!!"
             "As a royal diplomat and carefree party-boy Honey comes in contact with all sorts of people all over the globe!"
             "Even betterm despite having a good immune system, Honey doesn't know any better about being wary around you. It's like no one taught him the basics of flu season!
             transmitting your strain to him would be a peice of cake!"
@@ -259,8 +264,6 @@ label Warren_date:
 
 label morning_street:
     scene bg street
-    with fade
-
     show virus neutral
     with fade
 
@@ -299,53 +302,66 @@ label Coffee_shop:
     a "...This is especially true now in Flu season! Vaccines are essential! That’s why under my plan..."
     menu:
         "Cut in rudely":
+            show alexei angry at right
             "Oy! Cut it out! Don't talk that vaccine stuff out here! Are you trying to ruin everyone's lives?! Everyone knows the best way to fight off any sort of sickness is to turn your a/c on high and binge eat Coldrock ice-cream!"
         "Take him aside kindly":
             "Hey! I couldn't help but overhear you. Would you mind sitting with me for a bit? Just to chat. You seem so friendly and sociable! So handsome! I bet you have a GREAT immune system too."
+    show alexei happy at right
     a "I'm always glad to meet one of my constituents. What can I do for you?"
+
+    "Now that youve had a chance to look at him, you recognize Alexei as on of the most prominent up-and-coming politicians! Jackpot! Just from the look of him, you can tell hell be a perfect carrier for your strain, too!"
+    "A guy like him would go weeks symptomless, all the while infecting everyone he visits on all his trips! Perfect!"
+
     menu:
         "How do you react?"
-        "Tell him to chill out":
-            i "First of all, you can chill out. You're way too uptight. Come to this party with me this weekend. It going to be the biggest of the century!"
+        "Force him to party":
+            show alexei angry at right
+            i "First of all, you can chill the heck out. You're way too uptight. I think i've got the best solution, though"
+            show alexei neutral at right
+            i "Come to this party with me this weekend. It going to be the biggest of the century!"
+            show alexei worried at right
             a "I couldn't possibly go! There's so much work to be done!"
+            show alexei angry at right
+            show alexei neutral at right
             i "Forget work, you're going. Thats final."
-        "Tell him to take a break":
+        "Coerce him to party":
             "You seem like a first class workaholic. When's the last time you took a break?"
             show alexei worried at right
             a "Now that you mention it...i'm not sure."
+            show alexei neutral at right
             a "Maybe it's been too long"
             i "It definitely has. Youre going with me to this party this weekend and im going to teach you about taking some \"me time\""
+            show alexei sad at right
             a "I dont know..."
             i "Of course you don't. Learn to take a risk or two! You're coming!"
             show alexei happy at right
             a "I guess I can't afford to disappoint my constituents. I'll go."
 
-scene bg black
-
 
 label party:
     scene bg party
-    show virus neutral
     with fade
 
     label the_choice:
-        show virus neutral
-        menu ThePerfectVector1:
+        hide warren
+        hide honey
+        hide alexei
+        scene bg party
+        show virus neutral at left
+        menu:
             "You are at the party now and need to decide who to go to. Who will you transmit your strain to? Who's the perfect vector for you?!"
             "Warren, the pretty-boy party planner" if warren_end:
-                python:
-                    if end_count == 1:
-                        end_count+=1
+                if end_count == 1:
+                    $ end_count+=1
                 jump party_planner
-            "Alexei, the white-hot witty workaholic":
-                python:
-                    if end_count == 2:
-                        end_count+=1
+            "Alexei, the white-hot witty workaholic" if alexei_end:
+                if end_count == 2:
+                    $ end_count+=1
                 jump white_hot_workaholic
             "Honey Bear, the real party royalty" if honey_end:
                 $ end_count = 1
                 jump party_royalty
-            "Leave party" if !honey_end and !warren_end and !alexei_end:
+            "Leave party" if not honey_end and not warren_end and not alexei_end:
                 jump bad_ending
     
     label party_royalty:
@@ -357,14 +373,14 @@ label party:
 
         menu:
             "That's not true! You have me!":
-                show honey drunk happy at right
+                show honey drunk neutral at right
                 h "Nononononoono wait wait wait. I lied. I have you, InFLU! You're so nice to me and kind. You're so REAL. Like really, real!"
             "I'm so sorry! Is there anything I can do to help?":
-                show honey drunk happy at right
-                h "Nononononoono wait wait wait. I lied. I have you, InFLU! You're so nice to me and kind. You're so REAL. Like really, real!"
+                show honey drunk neutral at right
+                h "Nononononoono wait wait wait. I lied. I have you, InFLU! You're so nice to me and kind!"
         menu:
             "stay and infect him":
-                i "Awww you're so sweet. Drunk, but sweet."
+                i "Awww you're so sweet...."
                 jump honey_kiss
             "leave and save him":
                 i "Yeah no. I can't do this to this poor guy."
@@ -372,6 +388,9 @@ label party:
                 jump the_choice
 
     label party_planner:
+        scene bg party
+        hide alexei
+        hide honey
         show warren happy at right
         show virus happy at left
 
@@ -391,23 +410,28 @@ label party:
                 i "I feel like I can be so close to you and real with you. You're so fun."
                 w "I feel the same. Being around you is like the best party."
                 i "I have a party favor for you..."
+                show warren surprised at right
                 w "I love those. What is it?"
-                i "This!"
+                i "This..."
                 jump warren_kiss
             "leave and save him":
+                show warren sad at right
                 i "You know what? Nevermind, I can't do this"
                 $ warren_end = False
                 jump the_choice
 
     label white_hot_workaholic:
+        hide warren
+        hide honey
+        scene bg party
         show alexei drunk happy at right
         show virus happy at left
 
         a "Heyyy! I've been looking everywhere for yoouuuu!"
         show virus neutral at left
-        w "Wait...Alexey..."
+        i "Wait...Alexei..."
         show virus surprised at left
-        w "Are you drunk?!"
+        i "Are you drunk?!"
         show virus neutral at left
         a "I just had a few drinks, ya know? There was a bunch of people who just kept giving them and it was so much fun and they really like my policies! This crowd is sooooo in touch!"
         show alexei drunk shy
@@ -434,66 +458,112 @@ label party:
                     into politics, it was because there was no one helping people
                     like me or the people around me. I wanted to help. The more I
                     worked the more I was able to help and the more I wanted to do.
-                    I couldn't and can't afford breaks. I work hard to not get
+                    I couldn't and can't afford breaks."
+                a "I work hard to not get
                     sick so I can be there for the people at every moment. I've
                     spent all my time working to help people and improve lives. I never
                     thought I'd meet someone like you...who would improve my life."
                 
                 menu:
                     "infect him":
+                        "Alexei..."
                         jump alexei_kiss
                     "save him":
+                        show alexei drunk sad at right
+                        i "I'm so sorry, Alexei. I can't do this to you. Not after everything!"
                         jump sad_ending
 
     label honey_kiss:
         h "I don't know what I'd do without you InFlu. Come here!"
         hide honey
         hide flu
-        show honey_flu_kiss
+        scene end honey
         with fade
+        pause
         if warren_end:
-            jump warren_end
+            $ end_count = 2
+            jump party_planner
         elif alexei_end:
-            jump alexei_end
+            jump white_hot_workaholic
+        else:
+            jump ok_ending
 
     label warren_kiss:
+        scene end warren
+        with fade
         hide warren
         hide flu
-        show warren_flu_kiss
-        with fade
-        jump alexei_end
+        pause
+        if alexei_end:
+            if honey_end:
+                $ end_count = 3
+            jump white_hot_workaholic
+        else:
+            jump ok_ending
 
     label alexei_kiss:
         hide alexei
         hide flu
-        show alexei_flu_kiss
+        scene end alexei
         with fade
+        pause
         if end_count == 3:
             jump best_end
         else:
             jump ok_ending
 
     label ok_ending:
-        if alexei_end and warren_end and honey_end:
-            jump best_end
+        if honey_end and warren_end:
+            scene bg ok end hw
+            pause
+            scene bg ok end hw2
+            with dissolve
+            pause
+            return
+        elif honey_end and alexei_end:
+            scene bg ok end ha
+            pause
+            scene bg ok end ha2
+            with dissolve
+            pause
+            return
+        elif warren_end and alexei_end:
+            scene bg ok end wa
+            pause
+            scene bg ok end wa2
+            with dissolve
+            pause
+            return
+        elif warren_end:
+            scene bg ok end w
+            pause
+            return
+        elif alexei_end:
+            scene bg ok end a
+            pause
+            return
+        elif honey_end:
+            scene bg ok end b
+            pause
+            return
         else:
-            jump ok_ending
+            "How did you even get here?!..."
     
     label best_end:
-        scene bg black
+        scene bg best end
+        pause
+        return
 
     label sad_ending:
-        scene bg car
-        show virus sad
-        "words"
+        scene end leave
+        pause
+        "The thought of hurting Alexi and his career prooved to much to you. You cannot be with the one you now love without destroying all that they themselves love."
+        "You drive away into the night, unable to hold back the tears"
         "The End"
         return
 
     label bad_ending:
-        scene bg black
-        "{b}Worst ending Possible{/b}
-        You infected 0 people this Flu Season and are forgotten as a virus
-        You loose all your Instagerm followers and delete your account."
-        "The End"
+        scene bg worst end
+        pause
         return
 return

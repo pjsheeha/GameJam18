@@ -1,72 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <'Image' u'images/bg instagram flu.jpg'>:
-  File "game/script.rpy", line 39, in script
-    i "I mean, they aren't even seasonal! I'm the flu!"
-  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
-    _window_show()
-  File "renpy/common/000window.rpy", line 60, in _window_show
-    renpy.with_statement(trans)
-Exception: Could not load image u'images/bg instagram flu.jpg': error('Unsupported image format',)
+After initialization, but before game start.
+Exception: Language 'english' does not have any translations.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 39, in script
-    i "I mean, they aren't even seasonal! I'm the flu!"
-  File "/Applications/renpy-6.99.14-sdk/renpy/ast.py", line 609, in execute
-    statement_name("say")
-  File "/Applications/renpy-6.99.14-sdk/renpy/ast.py", line 43, in statement_name
-    i(name)
-  File "renpy/common/000window.rpy", line 98, in _window_auto_callback
-    _window_show()
-  File "renpy/common/000window.rpy", line 60, in _window_show
-    renpy.with_statement(trans)
-  File "/Applications/renpy-6.99.14-sdk/renpy/exports.py", line 1408, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/core.py", line 2186, in do_with
-    clear=clear)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/core.py", line 2620, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/core.py", line 3022, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/core.py", line 2034, in draw_screen
-    renpy.config.screen_height,
-  File "render.pyx", line 475, in renpy.display.render.render_screen
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/layout.py", line 711, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 143, in renpy.display.render.render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/transition.py", line 360, in render
-    bottom = render(self.old_widget, width, height, st, at)
-  File "render.pyx", line 143, in renpy.display.render.render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/layout.py", line 711, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 143, in renpy.display.render.render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/layout.py", line 711, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 143, in renpy.display.render.render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "accelerator.pyx", line 108, in renpy.display.accelerator.transform_render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/image.py", line 398, in render
-    return wrap_render(self.target, width, height, st, at)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/image.py", line 213, in wrap_render
-    rend = render(child, w, h, st, at)
-  File "render.pyx", line 143, in renpy.display.render.render
-  File "render.pyx", line 231, in renpy.display.render.render
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/im.py", line 504, in render
-    texture = cache.get(self, texture=True)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/im.py", line 213, in get
-    surf = image.load()
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/im.py", line 554, in load
-    surf = renpy.display.pgrender.load_image(renpy.loader.load(self.filename), self.filename)
-  File "/Applications/renpy-6.99.14-sdk/renpy/display/pgrender.py", line 160, in load_image
-    raise Exception("Could not load image {!r}: {!r}".format(filename, e))
-Exception: Could not load image u'images/bg instagram flu.jpg': error('Unsupported image format',)
+  File "/Applications/renpy-6.99.14-sdk/renpy/bootstrap.py", line 306, in bootstrap
+    renpy.main.main()
+  File "/Applications/renpy-6.99.14-sdk/renpy/main.py", line 520, in main
+    run(restart)
+  File "/Applications/renpy-6.99.14-sdk/renpy/main.py", line 102, in run
+    if not renpy.arguments.post_init():
+  File "/Applications/renpy-6.99.14-sdk/renpy/arguments.py", line 285, in post_init
+    return commands[command]()
+  File "/Applications/renpy-6.99.14-sdk/renpy/translation/extract.py", line 67, in extract_strings
+    extract_strings_core(language, args.destination, args.merge, args.force)
+  File "/Applications/renpy-6.99.14-sdk/renpy/translation/extract.py", line 31, in extract_strings_core
+    raise Exception("Language %r does not have any translations." % language)
+Exception: Language 'english' does not have any translations.
 
 Darwin-17.2.0-x86_64-i386-64bit
 Ren'Py 6.99.14.3135

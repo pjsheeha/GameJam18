@@ -2,12 +2,12 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 472: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation.
-    jump best_end
-    ^
+File "game/script.rpy", line 497: reached end of line when expecting ':'.
+    if alexei_end
+                 ^
 
-File "game/script.rpy", line 474: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation.
-    jump ok_ending
-    ^
+File "game/script.rpy", line 501: expected statement.
+    else:
+        ^
 
 Ren'Py Version: Ren'Py 6.99.14.3135
